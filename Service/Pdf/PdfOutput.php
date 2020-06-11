@@ -19,9 +19,9 @@ final class PdfOutput
         try {
             $content = ($this->callback)();
 
-            return is_string($content) ? $content : 'No content';
+            return \is_string($content) ? $content : 'No content';
         } catch (\Exception $e) {
-            return sprintf('Error getting content: %s', $e->getMessage());
+            return \sprintf('Error getting content: %s', $e->getMessage());
         }
     }
 }
