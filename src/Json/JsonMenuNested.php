@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace EMS\CommonBundle\Json;
 
+use EMS\CommonBundle\Common\Standard\Json;
+use function EMS\CommonBundle\Common\Standard\Json;
+
 /**
  * @implements \IteratorAggregate<JsonMenuNested>
  */
 final class JsonMenuNested implements \IteratorAggregate
 {
-    /** @var string */
-    private $id;
-    /** @var string */
-    private $type;
-    /** @var string */
-    private $label;
+    private string $id;
+    private string$type;
+    private string $label;
     /** @var array<mixed> */
-    private $object;
+    private array $object;
     /** @var JsonMenuNested[] */
-    private $children = [];
+    private array $children = [];
     /** @var JsonMenuNested|null */
-    private $parent;
+    private ?JsonMenuNested $parent = null;
 
     /**
      * @param array<mixed> $data
@@ -48,11 +48,11 @@ final class JsonMenuNested implements \IteratorAggregate
            'id' => 'root',
            'type' => 'root',
            'label' => 'root',
-           'children' => \json_decode($structure, true),
+           'children' => Json::decode($structure),
         ]);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->label;
     }
